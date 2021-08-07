@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Ironhack</h1>
+    <h2>{{h2}}</h2>
+    {{h5}}
+
+    {{#if students}}
+    <ul>
+        <li>Blah</li>
+        {{#each students}}
+            {{#if @first}}
+                <li style='color: purple'>{{this}}</li>
+            {{else if @last}}
+                <li style='color: pink'>{{this}}</li>
+            {{else}}
+                <li>{{@index}}: {{this}}</li> 
+            {{!-- @key for Objects --}}
+            {{/if}}
+
+        {{/each}}
+    </ul>
+    {{/if}}
+
+    {{#unless students}}
+        <h3>There is no students to show</h3>
+    {{/unless}}
+
+
+    {{#with class}}
+        {{name}}
+    {{/with}}
+
+</body>
+</html>
