@@ -3,7 +3,7 @@ const mongoose = require("mongoose")
 mongoose
   //                                gery-params-demo is the name of our database
   //                                   |
-    .connect('mongodb://localhost/gery-params-demo', {
+    .connect('mongodb://localhost/query-params-demo', {
         useNewUrlParser: true,
         useUnifiedTopology: true
     })
