@@ -31,9 +31,15 @@ app.get('/store/search', (req, res) => {
 
 app.get("/fake-login", (req, res) => {
     res.render("search-results", req.query )
-})
+});
 
-app.get('/', (req, res) => res.render("index"))
+// URL: http://localhost:3000/products/toys?prodID=123
+app.get('/products/:category', (req, res) => {
+    console.log(req.params.category); // toys
+    console.log(req.query.prodID); // 123
+});
+
+app.get('/', (req, res) => res.render("index"));
  
 app.listen(3000, () => console.log('App listening on port 3000!'));
 
