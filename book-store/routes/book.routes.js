@@ -24,9 +24,8 @@ router.get("/books", (req, res, next) => {
 
         res.render("book-pages/books-list", { books: allBooksFromDB, numberOfBooks: allBooksFromDB.length });
     })
-    .catch(error => console.log("An error occurred while getting books from database: ", error )) // <--- .catch() - if some error happens handle it here
+    .catch(error => console.log("An error occurred while getting books from database: ", error )); // <--- .catch() - if some error happens handle it here
 });
-
 
 // ****************************************************************************************
 // GET route to display the form to create a new book
@@ -48,7 +47,6 @@ router.post("/books/new", (req, res, next) => {
     // const author = req.body.author;
     // const rating = req.body.rating;
 
-
     // the line below is the same as 4 lines above:
 
     const { title, description, author, rating } = req.body;
@@ -60,9 +58,9 @@ router.post("/books/new", (req, res, next) => {
     Book.create({ title, description, author, rating })
     .then(newSavedBook => {
         // console.log("is this a new book: ", newSavedBook);
-        res.redirect("/books");
+        res.redirect("/books"); // 🏃‍♀️ 🏃‍♀️ 🏃‍♀️ GO TO LIST OF ALL BOOKS PAGE TO SEE YOUR NEW BOOK THERE
     })
-    .catch(error => console.log("An error occurred while saving a book to the database: ", error )) // <--- .catch() - if some error happens handle it here
+    .catch(error => console.log("An error occurred while saving a book to the database: ", error )); // <--- .catch() - if some error happens handle it here
 
 });
 
@@ -76,9 +74,9 @@ router.post("/books/:bookId/delete", (req, res, next) => {
 
     Book.findByIdAndDelete(req.params.bookId)
     .then(() => {
-        res.redirect("/books");
+        res.redirect("/books"); // 🏃‍♀️ 🏃‍♀️ 🏃‍♀️ GO TO LIST OF ALL BOOKS PAGE TO SEE THAT YOUR BOOK IS NOT THERE ANY MORE
     })
-    .catch(error => console.log("An error occurred while deleting a book from the database: ", error )) // <--- .catch() - if some error happens handle it here
+    .catch(error => console.log("An error occurred while deleting a book from the database: ", error )); // <--- .catch() - if some error happens handle it here
 })
 
 
@@ -89,12 +87,12 @@ router.post("/books/:bookId/delete", (req, res, next) => {
 router.get("/books/:bookId/edit", (req, res, next) => {
 
     Book.findById(req.params.bookId)
-    .then((bookToBeEditedFromDB) => {
+    .then((bookToBeEditedFromDB) => {  // bookToBeEditedFromDB - placeholder
 
         // console.log("Book to be edited: ", bookToBeEditedFromDB)
-        res.render("book-pages/book-edit", bookToBeEditedFromDB );
+        res.render("book-pages/book-edit", bookToBeEditedFromDB);
     })
-    .catch(error => console.log("An error occurred while deleting a book from the database: ", error )) // <--- .catch() - if some error happens handle it here
+    .catch(error => console.log("An error occurred while deleting a book from the database: ", error )); // <--- .catch() - if some error happens handle it here
 });
 
 // ****************************************************************************************
@@ -104,17 +102,17 @@ router.get("/books/:bookId/edit", (req, res, next) => {
 
 router.post("/books/:bookId/edit", (req, res, next) => {
 
-
     // console.log("is this UPDATED book: ", req.body);
 
     const { title, description, author, rating } = req.body;
     
     Book.findByIdAndUpdate(req.params.bookId, { title, description, author, rating }, { new: true })
-    .then(updatedBookFromDB => {
+    .then(updatedBookFromDB => { // updatedBookFromDB - placeholder
         // console.log("is this updated >>>>> ", updatedBookFromDB);
-        res.redirect(`/books/${req.params.bookId}`);
+
+        res.redirect(`/books/${req.params.bookId}`); // 🏃‍♀️ 🏃‍♀️ 🏃‍♀️ GO TO DETAILS PAGE TO SEE THE UPDATED BOOK
     })
-    .catch(error => console.log("An error occurred while updating a book in the database: ", error )) // <--- .catch() - if some error happens handle it here
+    .catch(error => console.log("An error occurred while updating a book in the database: ", error )); // <--- .catch() - if some error happens handle it here
 });
 
 // ****************************************************************************************
@@ -134,7 +132,7 @@ router.get("/books/:bookId", (req, res, next) => {
 
         res.render("book-pages/book-details", bookFromDB);
     })
-    .catch(error => console.log("An error occurred while getting a book from database: ", error )) // <--- .catch() - if some error happens handle it here
+    .catch(error => console.log("An error occurred while getting a book from database: ", error )); // <--- .catch() - if some error happens handle it here
 })
 
 
