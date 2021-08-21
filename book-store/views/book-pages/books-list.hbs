@@ -2,10 +2,20 @@
 
 <br>
 
+<div>
+    <h3>In the DB we have {{numberOfBooks}} books</h3>
+</div>
+
+<hr>
+
 {{#each books}}
     <div>
         <h3>{{ title }}</h3>
         <a href="/books/{{_id}}"> See details </a>
+        <br><br>
+        <form action="/books/{{_id}}/delete" method="POST">
+            <button>🗑 DELETE</button>
+        </form>
     </div>
     <hr>
 {{/each}}

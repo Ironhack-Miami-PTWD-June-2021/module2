@@ -1,0 +1,39 @@
+<h2>Create a book</h2>
+
+
+<form action="/books/new" method="POST">
+    <label>
+        Title: 
+        <input type="text" name="title">  {{!-- best practice tip: have "name" values match the model properties  --}}
+    </label>
+    <br>
+   
+
+    <label>
+        Description: 
+        <textarea name="description" cols="30" rows="5"> </textarea>
+    </label>
+    <br>
+
+    <label>
+        Author (full name): 
+        <input type="text" name="author">
+    </label>
+    <br>
+
+    <label>
+        Rating: 
+        <input type="number" name="rating" min="1" max="10">
+    </label>
+    <br>
+
+    <button type="submit">Save</button>
+</form>
+
+
+  {{!-- 
+    title: String,
+    description: String,
+    author: String,
+    rating: Number
+   --}}
