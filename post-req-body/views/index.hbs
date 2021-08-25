@@ -1,0 +1,24 @@
+<h2>Login form</h2>
+
+<form action="/login" method="POST">
+    <label> Username: 
+        <input type="text" name="username">
+    </label>
+        <label> Password: 
+        <input type="password" name="pass">
+    </label>
+
+    <button> Login </button>
+</form>
+
+{{#if username}}
+    <ul>
+        <li>Username: {{username}}</li>
+        <li>Password: {{password}}</li>
+    </ul>
+
+{{else}}
+
+    <h4> After you submit the form, you will see the data pop up here! </h4>
+
+{{/if}}
