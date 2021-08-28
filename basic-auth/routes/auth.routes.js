@@ -1,12 +1,8 @@
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
+const { isLoggedOut } = require("../middleware/route-guard");
 
 const User = require("../models/User.model");
-
-/* GET home page */
-router.get("/auth/signup", (req, res, next) => {
-  res.render("auth/signup");
-});
 
 router.get("/auth/login", (req, res, next) => {
   console.log("Our session:", req.session);
@@ -16,6 +12,10 @@ router.get("/auth/login", (req, res, next) => {
   } else {
     res.render("auth/login");
   }
+});
+
+router.get("/auth/signup", isLoggedOut, (req, res, next) => {
+  res.render("auth/signup");
 });
 
 router.post("/auth/login", (req, res, next) => {
@@ -37,7 +37,7 @@ router.post("/auth/login", (req, res, next) => {
     } else if (bcrypt.compareSync(password, userFromDB.password)) {
       // console.log(req.session.user);
       req.session.user = userFromDB;
-      res.status(200).render("index", userFromDB);
+      res.status(200).render("user/profile", userFromDB);
     } else {
       res.status(500).render("index", {
         errorMessage: "Incorrect data",
@@ -59,7 +59,8 @@ router.post("/auth/signup", (req, res, next) => {
         const hashedPassword = bcrypt.hashSync(password, 10);
         User.create({ username, password: hashedPassword, email })
           .then((responseFromDB) => {
-            res.render("index", responseFromDB);
+            req.session.user = responseFromDB;
+            res.render("user/profile", responseFromDB);
           })
           .catch((err) => {
             console.log(err);

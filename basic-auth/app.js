@@ -33,6 +33,17 @@ app.use("/", index);
 const auth = require("./routes/auth.routes");
 app.use("/", auth);
 
+// app.get("*", (req, res, next) => {
+//   if (req.session?.user) {
+//     next();
+//   } else {
+//     res.redirect("/auth/login");
+//   }
+// });
+
+const user = require("./routes/user.routes");
+app.use("/", user);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 
