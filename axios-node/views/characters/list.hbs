@@ -1,0 +1,18 @@
+<h1>Characters list</h1>
+
+{{#each character}}
+    <div>
+        <h5>{{id}} - {{name}}</h5>
+        <h6>{{occupation}}</h6>
+        <h6>Debt: {{debt}}</h6>
+        <h6>{{weapon}}</h6>
+    </div>
+{{/each}}
+
+<form action="/characters/create" method="post">
+    <input type="text" name="name" placeholder="name">
+    <input type="text" name="occupation" placeholder="occupation">
+    <input type="text" name="weapon" placeholder="weapon">
+    <input type="checkbox" name="debt" placeholder="debt">
+    <button type="submit">Create a Character</button>
+</form>

@@ -1,0 +1,16 @@
+<h1>Edit a Character</h1>
+
+<form action="/characters/edit/{{id}}" method="post">
+    <input type="text" name="name" placeholder="name" value="{{name}}">
+    <input type="text" name="occupation" placeholder="occupation" value="{{occupation}}">
+    <input type="text" name="weapon" placeholder="weapon" value="{{weapon}}">
+    <input type="checkbox" name="debt" placeholder="debt" checked="{{debt}}">
+    <button type="submit">Update a Character</button>
+</form>
+
+<form action="/characters/delete/{{id}}" method="post">
+    <label>
+        Delete this character?
+        <button type="submit">Delete</button>
+    </label>
+</form>
